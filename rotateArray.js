@@ -8,24 +8,33 @@ const T = [
   [-1, 0, 2],
   [0, 0, 1],
 ];
-const n = A.length;
-var B = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-];
-
-function rotateMatrix(n) {
-  // n is odd
-  for (let ix = 0; ix < n; ix++) {
-    for (let jy = 0; jy < n; jy++) {
-      for (let ik = 0; ik < n; ik++) {
-        newx = jy;
-        newy = -ix + 2;
-        B[newy][newx] = A[jy][ix];
-      }
+function transpose(A) {
+  let N = A.length;
+  for (let i = 0; i < N - 1; i++) {
+    for (let j = i + 1; j < N; j++) {
+      swap(A, i, j, j, i);
     }
   }
 }
-rotateMatrix(3);
-console.log(JSON.stringify(B));
+function swap(A, i, j, k, l) {
+  let temp = A[j][i];
+  A[j][i] = A[l][k];
+  A[l][k] = temp;
+}
+function exchangeCols(A) {
+  // work in from outside
+  let N = A.length; //
+  let n = Math.floor(N / 2); // round down to integer
+  for (let col = 0; col < n; col++) {
+    for (let row = 0; row < N; row++) {
+      swap(A, col, row, N - 1 - col, row);
+    }
+  }
+}
+function rotateMatrix(A) {
+  transpose(A);
+  exchangeCols(A);
+}
+transpose(A);
+exchangeCols(A);
+console.log(JSON.stringify(A));
