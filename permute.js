@@ -16,5 +16,5 @@ function permute(A) {
   }
   return permutations;
 }
-const A = "abcd";
+const A = "abc";
 console.log(JSON.stringify(permute(A)));
