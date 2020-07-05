@@ -16,5 +16,5 @@ function permute(A) {
   }
   return permutations;
 }
-const A = "abc";
-console.log(JSON.stringify(permute(A)));
+//const A = "abc";    REPLACE THESE TO WORK WITh NODE
+// console.log(JSON.stringify(permute(A)));
